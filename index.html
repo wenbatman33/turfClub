@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="zh-Hant">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#123e31"><meta name="description" content="Turf Club — 日式 3D 賽馬、電視轉播與趣味競猜。"><title>TURF CLUB — 日本競馬體驗</title><link rel="icon" href="data:,"><link rel="stylesheet" href="/src/style.css"></head>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#123e31"><meta name="description" content="Turf Club — 日式 3D 賽馬、電視轉播與趣味競猜。"><title>TURF CLUB — 日本競馬體驗</title><link rel="icon" href="data:,"><link rel="stylesheet" href="./src/style.css"><script type="importmap">{"imports":{"three":"./vendor/three/build/three.module.js","three/addons/":"./vendor/three/examples/jsm/"}}</script></head>
 <body>
 <header class="site-header"><a class="brand" href="./" aria-label="Turf Club 首頁"><span class="brand-monogram">T<span>C</span></span><span>TURF CLUB<small>JAPAN RACING EXPERIENCE</small></span></a><nav aria-label="主要導覽"><button class="nav active" data-page="entry">出馬表<span>01</span></button><button class="nav" data-page="race">賽事轉播<span>02</span></button><button class="nav" data-page="result">比賽結果<span>03</span></button></nav><div class="header-actions"><div class="balance"><span class="point-mark">P</span><strong id="balance">10,000</strong><small>遊戲點數</small></div><button class="icon-button" id="sound" aria-label="開啟音效" title="開啟音效">♪<span class="sound-off">／</span></button><button class="icon-button" id="help" aria-label="遊戲說明">?</button></div></header>
 <main>
@@ -19,5 +19,5 @@
 <dialog id="horse-dialog" class="horse-dialog"><button class="dialog-close" data-close aria-label="關閉">×</button><div id="horse-detail"></div></dialog>
 <dialog id="info-dialog" class="info-dialog"><button class="dialog-close" data-close aria-label="關閉">×</button><div id="info-content"></div></dialog>
 <div id="toast" role="status" aria-live="polite"></div>
-<script type="module" src="/src/main.js"></script>
+<script type="module" src="./src/main.js"></script>
 </body></html>

@@ -1,22 +1,20 @@
 # TURF CLUB — 日本競馬體驗
 
-以原生 ESM JavaScript、Three.js 與 Vite 製作的日式 3D 賽馬遊戲。先看出馬表、選擇競猜，再觀看完整轉播、最後直線重播與點數結算。
+以原生 ESM JavaScript、Three.js 製作的日式 3D 賽馬遊戲。先看出馬表、選擇競猜，再觀看完整轉播、最後直線重播與點數結算。
 
-## 啟動
-
-```sh
-npm install
-npm run dev
-```
-
-開啟 <http://localhost:8770>。手機與電腦在同一個 Wi-Fi 時，可用終端顯示的 Network 網址開啟。
+## 啟動（不需安裝依賴、不需 build）
 
 ```sh
-npm run build
-npm run preview -- --port 8771
+node scripts/serve.mjs 8770
 ```
 
-`dist/` 是靜態部署輸出。遊戲透過 HTTP 執行，不直接雙擊 HTML。所有遊戲模型、圖片、HDR 與 3D 字型在 `public/assets/`；頁面字型使用 Google Fonts 並提供系統字型備援。
+開啟 <http://localhost:8770>。也可使用 `npm run dev`；這只是啟動靜態 HTTP 伺服器。
+
+瀏覽器透過 import map 直接載入 `src/*.js` 與 `vendor/three/` 的原生 ES 模組。所有遊戲模型、圖片、音效與 HDR 位於 `public/assets/`，採相對模組路徑，支援儲存庫子目錄。頁面字型使用 Google Fonts 並提供系統字型備援。
+
+GitHub Pages 設定：**Deploy from a branch → main → / (root)**。直接發布儲存庫即可；`.nojekyll` 停用 Jekyll，無 Vite、打包步驟或產物目錄。請透過 HTTP 開啟，勿雙擊 HTML。
+
+僅在開發／執行自動測試時需要 `npm ci`；遊戲本身不需要 npm 安裝。
 
 ## 已實作
 
@@ -49,7 +47,7 @@ npm test
 npm run test:browser
 ```
 
-瀏覽器測試預設使用 macOS Google Chrome；其他環境請設定 `CHROME_PATH`。可用 `TEST_URL` 指向正式建置的預覽伺服器。
+瀏覽器測試預設使用 macOS Google Chrome；其他環境請設定 `CHROME_PATH`。可用 `TEST_URL` 指向靜態網站伺服器。
 
 - 20 項動畫、音效、跑線、模擬與票種測試：勝負、順序、同枠組合、非法輸入、鎖定賠率、確定性、完整賽程、重播資料與不同勝者。
 - Playwright：桌面 1440×1000 與手機模擬 390×844，整場開賽至 12 匹抵達、結算、重播不重複付款、下一場、重新整理退款、手機觸控與水平溢位。

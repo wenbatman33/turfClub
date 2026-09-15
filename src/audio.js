@@ -5,7 +5,7 @@ export class RaceAudio {
  async toggle(){
   if(!this.ctx){this.ctx=new (window.AudioContext||window.webkitAudioContext)();this.master=this.ctx.createGain();this.master.gain.value=0;this.master.connect(this.ctx.destination);}
   await this.ctx.resume();
-  if(!this.buffer){const response=await fetch('/assets/audio/horse-grass.mp3');if(!response.ok)throw new Error('草地疾馳錄音載入失敗');this.buffer=await this.ctx.decodeAudioData(await response.arrayBuffer());}
+  if(!this.buffer){const response=await fetch(new URL("../public/assets/audio/horse-grass.mp3",import.meta.url).href);if(!response.ok)throw new Error('草地疾馳錄音載入失敗');this.buffer=await this.ctx.decodeAudioData(await response.arrayBuffer());}
   this.enabled=!this.enabled;if(!this.enabled)this.silence();return this.enabled;
  }
  silence(){
