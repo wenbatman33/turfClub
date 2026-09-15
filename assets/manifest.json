@@ -1,5 +1,5 @@
 {
-  "totalBytes": 23567307,
+  "totalBytes": 22229358,
   "files": [
     {
       "path": "public/assets/audio/horse-grass.mp3",
@@ -69,16 +69,6 @@
       "triangles": 540,
       "meshes": 1,
       "animations": []
-    },
-    {
-      "path": "public/assets/textures/fabric-normal.jpg",
-      "bytes": 474669,
-      "sha256": "de0e9c5ed5cce7dacd50a67be16c6d8b8dc036907638e3702729c2f60296094e"
-    },
-    {
-      "path": "public/assets/textures/leather-normal.jpg",
-      "bytes": 863280,
-      "sha256": "506a0b7650c2dea285e247f26ed2d0d6ec38fc10dd584359f0d203e9c082236d"
     },
     {
       "path": "public/assets/textures/sky.hdr",

@@ -1,9 +1,8 @@
+import {outputPath} from './output.mjs';
 import {chromium} from '@playwright/test';
 import assert from 'node:assert/strict';
-import {mkdir} from 'node:fs/promises';
-await mkdir('artifacts',{recursive:true});
 const browser=await chromium.launch({executablePath:process.env.CHROME_PATH||'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',headless:true});
-const url=process.env.TEST_URL||'http://localhost:8772/turfClub/';
+const url=process.env.TEST_URL||'https://wenbatman33.github.io/turfClub/';
 try{
  for(const width of [1440,390]){
   const page=await browser.newPage({viewport:{width,height:900}}),errors=[];
@@ -14,6 +13,6 @@ try{
   await page.locator('#sound').click();await page.waitForFunction(()=>document.querySelector('#sound').getAttribute('aria-pressed')==='true');
   await page.locator('#start-race').click();await page.waitForFunction(()=>window.__turf.state.time>2);
   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
-  await page.screenshot({path:`artifacts/pages-${width}.png`});assert.deepEqual(errors,[]);console.log(`${width}px: models, styles, audio and race loaded at ${url}`);await page.close();
+  await page.screenshot({path:outputPath(`pages-${width}.png`)});assert.deepEqual(errors,[]);console.log(`${width}px: models, styles, audio and race loaded at ${url}`);await page.close();
  }
 }finally{await browser.close();}

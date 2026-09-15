@@ -1,4 +1,4 @@
-import {coursePoint} from './scene.js';
+import {coursePoint} from './course.js';
 // Match the CSS stadium's centre line in pixels, including its circular end caps.
 export function mapPosition(distance,lane,width,height){
  const radius=(height-52)/2-7,straight=(width-30)/2-7-radius;

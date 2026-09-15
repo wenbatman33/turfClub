@@ -4,16 +4,16 @@
 
 ## 第三方素材
 
-| 執行檔案 | 來源與作者 | 授權 | 本專案的處理 |
+| 檔案 | 來源與作者 | 授權 | 本專案的處理 |
 | --- | --- | --- | --- |
 | `public/assets/models/racehorse.glb` | [Rigged Horse](https://opengameart.org/content/rigged-horse)，Lyndon Daniels（模型 / 貼圖）、ChadM（骨架） | [CC0](https://creativecommons.org/publicdomain/zero/1.0/) | 修復鬃毛、尾巴、眼睛綁定，網格細分、PBR 材質轉換、原創 Idle / Gallop 動畫、尺寸正規化及 GLB 匯出；執行期使用毛色變體 |
 | `public/assets/models/pine-web.glb` | [Pine Tree 01 / Poly Haven](https://polyhaven.com/a/pine_tree_01) | CC0 | 保留一棵樹並製作遠景低細節版本，縮小貼圖 |
 | `public/assets/textures/sky.hdr` | [Kloppenheim 06 Pure Sky / Poly Haven](https://polyhaven.com/a/kloppenheim_06_puresky) | CC0 | 1K HDR 環境照明與天空 |
-| `public/assets/textures/leather-normal.jpg` | [Brown Leather / Poly Haven](https://polyhaven.com/a/brown_leather) | CC0 | 騎師靴子與馬具材質，另嵌入騎師 GLB |
-| `public/assets/textures/fabric-normal.jpg` | [Denim Fabric / Poly Haven](https://polyhaven.com/a/denim_fabric) | CC0 | 弱化法線作為競賽服織物細節，另嵌入騎師 GLB |
+| `assets/source/textures/leather-normal.jpg` | [Brown Leather / Poly Haven](https://polyhaven.com/a/brown_leather) | CC0 | 騎師靴子與馬具材質，另嵌入騎師 GLB |
+| `assets/source/textures/fabric-normal.jpg` | [Denim Fabric / Poly Haven](https://polyhaven.com/a/denim_fabric) | CC0 | 弱化法線作為競賽服織物細節，另嵌入騎師 GLB |
 | `public/assets/fonts/helvetiker_regular.typeface.json` | [Three.js fonts](https://github.com/mrdoob/three.js/tree/dev/examples/fonts)，Helvetiker / Typeface.js / Magenta | 字型檔內附授權資訊 | 3D 號碼布、閘門與場內標示 |
 
-Poly Haven 素材授權：[Poly Haven license](https://polyhaven.com/license)。程式使用 Three.js（MIT），原始套件授權由 npm 套件保留。
+Poly Haven 素材授權：[Poly Haven license](https://polyhaven.com/license)。程式使用 Three.js（MIT），必要的瀏覽器模組與授權保留於 `vendor/three/`。
 
 ## 原創素材
 
@@ -35,7 +35,7 @@ Poly Haven 素材授權：[Poly Haven license](https://polyhaven.com/license)。
 - `assets/source/riggedHorse.blend`：取得的原始 CC0 馬匹。
 - `assets/source/racehorse.blend`：包含 Idle / Gallop 動畫的可編輯工作檔。
 - `assets/source/jockey.blend`：原創騎師工作檔。
-- `scripts/fetch-assets.py`：下載 Poly Haven 來源檔；原始樹木檔約 905 MB，非遊戲執行需求，已由 `.gitignore` 排除。
+- `scripts/fetch-assets.py`：下載 Poly Haven 來源檔；原始樹木檔約 905 MB，已清除；需要重新製作 LOD 時才下載，且不納入 Git。
 - `scripts/prepare-horse.py`、`scripts/prepare-rider.py`、`scripts/prepare-crowd.py`、`scripts/optimize-tree.py`：Blender 匯出與最佳化腳本。
 - `assets/manifest.json`：執行期資產的位元組數、SHA-256 與 GLB 網格 / 動畫資訊。
 
@@ -43,7 +43,7 @@ Poly Haven 素材授權：[Poly Haven license](https://polyhaven.com/license)。
 
 競猜判定參考 [JRA 官方馬券說明](https://www.jra.go.jp/kouza/beginner/baken/)。本遊戲是固定模擬賠率，不是實際彩池投注系統。
 
-使用者提供的影片：<https://www.youtube.com/watch?v=BU7J3UJR-bo>。影片頁面讀取失敗，未宣稱逐鏡檢視或精確重製影片。場景使用日本賽場視覺元素，比例與動線為遊戲設計，並非中山競馬場測繪模型。
+使用者提供的影片：<https://www.youtube.com/watch?v=BU7J3UJR-bo>。影片與使用者提供的步態分解圖僅供動作及轉播風格參考，未納入遊戲資產。場景使用日本賽場視覺元素，比例與動線為遊戲設計，並非中山競馬場測繪模型。
 
 ### 2026-09-15：步態與頒獎更新
 
@@ -67,3 +67,5 @@ Poly Haven 素材授權：[Poly Haven license](https://polyhaven.com/license)。
 ### 跑姿分解參考
 
 使用者提供 https://andyeee.blogspot.com/2010/12/blog-post_17.html 的 Muybridge 連拍與跑姿分解圖，已實際檢视。僅作動作研究，未納入遊戲素材。前後腿採不同回收路徑，後腿→前腿依序支撐後保留收腿騰空；小腿維持剛性蒙皮。
+
+馬匹貼圖已封裝在原始及可編輯 Blender 檔中，不另保留重複的解出 PNG。騎師與頒獎來源檔使用 `assets/source/textures/` 的共用法線貼圖。

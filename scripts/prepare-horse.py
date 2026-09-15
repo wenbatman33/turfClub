@@ -1,5 +1,6 @@
 """Convert the CC0 Lyndon Daniels / ChadM horse, repair attachments and author a gallop."""
 import bpy,math
+bpy.context.preferences.filepaths.save_version=0
 from pathlib import Path
 from mathutils import Vector,Quaternion
 ROOT=Path(__file__).resolve().parents[1]
@@ -9,10 +10,7 @@ for o in list(bpy.data.objects):
 arm=bpy.data.objects['Armature'];arm.name='ThoroughbredRig'
 for b in arm.pose.bones:
  for c in list(b.constraints):b.constraints.remove(c)
-for im in bpy.data.images:
- if im.size[0] and im.name!='Render Result':
-  im.filepath_raw=str(ROOT/'assets/source/textures'/ (im.name.replace('.001','').replace('.bmp','.png').replace('.p','.png') if im.name.endswith('.p') else im.name.replace('.bmp.001','.png')))
-  im.file_format='PNG';im.save()
+# Source textures are packed inside riggedHorse.blend; keep them embedded.
 def material(name,diff,norm=None,rough=.5):
  m=bpy.data.materials.new(name);m.use_nodes=True;n=m.node_tree.nodes;l=m.node_tree.links;p=n.get('Principled BSDF');p.inputs['Roughness'].default_value=rough
  t=n.new('ShaderNodeTexImage');t.image=bpy.data.images[diff];l.new(t.outputs['Color'],p.inputs['Base Color'])

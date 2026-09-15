@@ -1,10 +1,10 @@
+import {outputPath} from './output.mjs';
 import {chromium} from '@playwright/test';
 import assert from 'node:assert/strict';
-import {mkdir,writeFile} from 'node:fs/promises';
-await mkdir('artifacts',{recursive:true});
+import {writeFile} from 'node:fs/promises';
 const browser=await chromium.launch({executablePath:process.env.CHROME_PATH||'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',headless:true});
 const base=process.env.TEST_URL||'http://localhost:8770';const issues=[],report={};
-const capture=(page,name)=>page.screenshot({path:`artifacts/${name}.png`,fullPage:true});
+const capture=(page,name)=>page.screenshot({path:outputPath(`${name}.png`),fullPage:true});
 function observe(page){page.on('pageerror',e=>issues.push(e.message));page.on('console',m=>{if(m.type()==='error')issues.push(m.text());});page.on('response',r=>{if(r.status()>=400)issues.push(`${r.status()} ${r.url()}`);});}
 async function ready(page){await page.goto(base);await page.waitForFunction(()=>window.__turf?.state.assetReady,null,{timeout:60000});}
 async function state(page){return page.evaluate(()=>window.__turf.state);}
@@ -43,5 +43,5 @@ try{
  await phone.locator('#start-race').tap();await phone.locator('#speed').tap();await phone.locator('#speed').tap();await phone.waitForFunction(()=>window.__turf.state.time>5);await capture(phone,'mobile-race');assert.ok(await phone.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
  await phone.locator('[data-camera="aerial"]').tap();await phone.waitForTimeout(400);await capture(phone,'mobile-aerial');await phone.locator('[data-camera="auto"]').tap();
  await phone.waitForFunction(()=>window.__turf.state.settled,null,{timeout:70000});s=await state(phone);assert.equal(s.finish.length,12);assert.equal(s.balance,9900+s.results.reduce((a,t)=>a+t.payout,0));await finishFlow(phone,'mobile');await capture(phone,'mobile-results');assert.ok(await phone.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));report.mobile={finish:s.finish,balance:s.balance,render:s.render,touch:true,viewport:'390×844'};
- await mobile.close();assert.deepEqual(issues,[]);report.browserErrors=issues;await writeFile('artifacts/browser-report.json',JSON.stringify(report,null,2));console.log('Browser verification passed:',JSON.stringify({desktop:report.desktop.balance,mobile:report.mobile.balance,errors:issues}));
+ await mobile.close();assert.deepEqual(issues,[]);report.browserErrors=issues;await writeFile(outputPath('browser-report.json'),JSON.stringify(report,null,2));console.log('Browser verification passed:',JSON.stringify({desktop:report.desktop.balance,mobile:report.mobile.balance,errors:issues}));
 }finally{await browser.close();}

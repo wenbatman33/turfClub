@@ -1,14 +1,14 @@
+# Optional local test dependencies
 node_modules/
-dist/
+# Downloaded source tree used only when rebuilding its LOD
+assets/source/tree/
+# Editor / Python caches
 .DS_Store
 *.blend1
-assets/source/tree/
-artifacts/
-
+*.blend2
 __pycache__/
 *.pyc
+# Local secrets
 .env
 .env.*
 !.env.example
-assets/source/audio/Fantozzi-footsteps/
-assets/source/audio/Fantozzi-footsteps.7z

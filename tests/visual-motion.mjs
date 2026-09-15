@@ -1,9 +1,0 @@
-import {chromium} from '@playwright/test';
-const browser=await chromium.launch({executablePath:'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',headless:true});const page=await browser.newPage({viewport:{width:1200,height:700}});
-await page.goto('http://localhost:8770');await page.waitForFunction(()=>window.__turf?.state.assetReady);
-await page.evaluate(async()=>{const {RacingScene}=await import('/src/scene.js');const {createRoster}=await import('/src/race.js');const container=document.createElement('div');container.style='position:fixed;inset:0;z-index:999;background:black';document.body.append(container);window.motion=new RacingScene(container,createRoster());await motion.loadPromise;motion.setCamera('close');});
-console.log('Hoof surface probes:',await page.evaluate(()=>motion.horses[0].probes.length));
-for(let i=0;i<4;i++){await page.evaluate(i=>{motion.setCamera('close');motion.update([{id:1,distance:300,lane:7,velocity:17}],20+i*.145,0,true);for(const h of motion.horses)h.group.visible=h.id===1;motion.render();},i);await page.screenshot({path:`artifacts/gait-${i}.png`});}
-await page.evaluate(async()=>{const {Race,createRoster}=await import('/src/race.js');const {FinishExperience}=await import('/src/finish-experience.js');window.fixtureRace=new Race(createRoster(),741);while(!fixtureRace.finished)fixtureRace.step(1/60);window.experience=new FinishExperience(motion,()=>fixtureRace,()=>{});experience.review();});
-await page.screenshot({path:'artifacts/review-corrected.png'});await page.locator('#photo-confirm').click();await page.screenshot({path:'artifacts/ceremony-corrected.png'});await page.evaluate(()=>{motion.drawCeremony(2.66);experience.newspaper(motion.ceremonyPhoto());});await page.screenshot({path:'artifacts/newspaper-corrected.png'});
-await browser.close();

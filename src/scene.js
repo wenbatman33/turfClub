@@ -8,18 +8,11 @@ import { clone } from 'three/addons/utils/SkeletonUtils.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { DISTANCE, rng } from './race.js';
 import { fitGaitHeight } from './gait-height.js';
-export const TRACK={straight:145,radius:78,width:22};
-export const TRACK_LENGTH=TRACK.straight*4+Math.PI*2*TRACK.radius;
-// Clockwise oval. Final straight runs left-to-right, the finish post is shared with the starting position.
+import {TRACK,TRACK_LENGTH,coursePoint as courseCoordinates} from './course.js';
+export {TRACK,TRACK_LENGTH};
 export function coursePoint(distance,lane=0){
- const H=TRACK.straight,R=TRACK.radius;
- const s=((distance/DISTANCE*TRACK_LENGTH+H+80)%TRACK_LENGTH+TRACK_LENGTH)%TRACK_LENGTH;
- let x,z,tx,tz;
- if(s<2*H){x=-H+s;z=R+lane;tx=1;tz=0;}
- else if(s<2*H+Math.PI*R){const a=(s-2*H)/R;x=H+Math.sin(a)*(R+lane);z=Math.cos(a)*(R+lane);tx=Math.cos(a);tz=-Math.sin(a);}
- else if(s<4*H+Math.PI*R){x=H-(s-2*H-Math.PI*R);z=-R-lane;tx=-1;tz=0;}
- else {const a=(s-4*H-Math.PI*R)/R;x=-H-Math.sin(a)*(R+lane);z=-Math.cos(a)*(R+lane);tx=-Math.cos(a);tz=Math.sin(a);}
- return {position:new THREE.Vector3(x,.04,z),tangent:new THREE.Vector3(tx,0,tz),normal:new THREE.Vector3(-tz,0,tx)};
+ const p=courseCoordinates(distance,lane);
+ return Object.fromEntries(Object.entries(p).map(([name,q])=>[name,new THREE.Vector3(q.x,q.y,q.z)]));
 }
 function box(sx,sy,sz,mat,x,y,z){const o=new THREE.Mesh(new THREE.BoxGeometry(sx,sy,sz),mat);o.position.set(x,y,z);o.castShadow=true;o.receiveShadow=true;return o;}
 function beam(a,b,width,mat){const dir=b.clone().sub(a);const o=new THREE.Mesh(new THREE.CylinderGeometry(width,width,dir.length(),6),mat);o.position.copy(a).add(b).multiplyScalar(.5);o.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),dir.normalize());o.castShadow=true;return o;}

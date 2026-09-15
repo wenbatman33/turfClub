@@ -2,7 +2,7 @@ import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {mapPosition} from '../src/course-map.js';
 import {DISTANCE,createRoster} from '../src/race.js';
-import {coursePoint,TRACK} from '../src/scene.js';
+import {coursePoint,TRACK} from '../src/course.js';
 test('map markers follow the actual stadium band through both bends at desktop and phone sizes',()=>{
  for(const width of [290,540,1120])for(const lane of [1.3,7,16.5])for(let d=0;d<=DISTANCE;d+=3){
   const height=205,p=mapPosition(d,lane,width,height),r=(height-52)/2-7,straight=(width-30)/2-7-r;

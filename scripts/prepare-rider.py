@@ -4,10 +4,11 @@ from mathutils import Vector
 from pathlib import Path
 R=Path(__file__).resolve().parents[1]
 bpy.ops.wm.read_factory_settings(use_empty=True)
+bpy.context.preferences.filepaths.save_version=0
 def mat(name,color,rough=.5,normal=None):
  m=bpy.data.materials.new(name);m.diffuse_color=(*color,1);m.use_nodes=True;n=m.node_tree.nodes;p=n.get('Principled BSDF');p.inputs['Base Color'].default_value=(*color,1);p.inputs['Roughness'].default_value=rough
  if normal:
-  t=n.new('ShaderNodeTexImage');t.image=bpy.data.images.load(str(R/'public/assets/textures'/normal));t.image.colorspace_settings.name='Non-Color';nm=n.new('ShaderNodeNormalMap');nm.inputs['Strength'].default_value=.2;m.node_tree.links.new(t.outputs['Color'],nm.inputs['Color']);m.node_tree.links.new(nm.outputs['Normal'],p.inputs['Normal'])
+  t=n.new('ShaderNodeTexImage');t.image=bpy.data.images.load(str(R/'assets/source/textures'/normal));t.image.colorspace_settings.name='Non-Color';nm=n.new('ShaderNodeNormalMap');nm.inputs['Strength'].default_value=.2;m.node_tree.links.new(t.outputs['Color'],nm.inputs['Color']);m.node_tree.links.new(nm.outputs['Normal'],p.inputs['Normal'])
  return m
 silk=mat('RacingSilk',(.035,.31,.19),.35,'fabric-normal.jpg');white=mat('IvorySilk',(.87,.86,.78),.52,'fabric-normal.jpg');leather=mat('RidingLeather',(.024,.018,.012),.32,'leather-normal.jpg');skin=mat('Skin',(.59,.35,.22),.65);metal=mat('StirrupMetal',(.3,.34,.33),.25);metal.node_tree.nodes['Principled BSDF'].inputs['Metallic'].default_value=.85;glass=mat('Goggles',(.015,.025,.03),.08)
 def mesh(name,verts,faces,m):
