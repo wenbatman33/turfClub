@@ -1,0 +1,105 @@
+{
+  "totalBytes": 23567307,
+  "files": [
+    {
+      "path": "public/assets/audio/horse-grass.mp3",
+      "bytes": 697882,
+      "sha256": "aa2eeece19780bf79dd456a812afeaa840ff676e96b5a43dd6faf4702f004268"
+    },
+    {
+      "path": "public/assets/fonts/helvetiker_regular.typeface.json",
+      "bytes": 63182,
+      "sha256": "d5c5467690f74061179a292af83bd85c4c551e0f106b2af99714f11184c96981"
+    },
+    {
+      "path": "public/assets/images/racing-hero.png",
+      "bytes": 2118160,
+      "sha256": "a8ac4456ee2927f3b9bb5d1b6f1b9897d078b0dc11fe2c455ca85e8e242fd489",
+      "width": 1672,
+      "height": 941,
+      "pngColorType": 2
+    },
+    {
+      "path": "public/assets/models/ceremony.glb",
+      "bytes": 1722972,
+      "sha256": "4fe00edb4006822d40cf787a5c638cf18574304a17b4f17917e7ce75fbd5d4e1",
+      "triangles": 15508,
+      "meshes": 32,
+      "animations": [
+        "ForeSleeve",
+        "ForeSleeve.001",
+        "Glove",
+        "Glove.001",
+        "TrophyLift",
+        "UpperSleeve",
+        "UpperSleeve.001"
+      ]
+    },
+    {
+      "path": "public/assets/models/jockey.glb",
+      "bytes": 1851080,
+      "sha256": "26a3b8b66076f015e9f0b504a412e2f64cfbf9df3cc73e23b8dfa2810a2959d6",
+      "triangles": 20640,
+      "meshes": 38,
+      "animations": []
+    },
+    {
+      "path": "public/assets/models/pine-web.glb",
+      "bytes": 4720264,
+      "sha256": "2b68554201f7e5f17719be8e7e21f58d8e28f5df8eb66cd1fe5f4a4e1bf1e132",
+      "triangles": 32000,
+      "meshes": 1,
+      "animations": []
+    },
+    {
+      "path": "public/assets/models/racehorse.glb",
+      "bytes": 3322476,
+      "sha256": "2242978ad7043e0fc4393000989fc9fa86591ba87c0964e6c042683360f83851",
+      "triangles": 37160,
+      "meshes": 5,
+      "animations": [
+        "Gallop",
+        "Idle"
+      ]
+    },
+    {
+      "path": "public/assets/models/spectator.glb",
+      "bytes": 28184,
+      "sha256": "0245fc9b256c6e923f16e797702b3b16fcdba055c0f9fe016f38def1f41cd65f",
+      "triangles": 540,
+      "meshes": 1,
+      "animations": []
+    },
+    {
+      "path": "public/assets/textures/fabric-normal.jpg",
+      "bytes": 474669,
+      "sha256": "de0e9c5ed5cce7dacd50a67be16c6d8b8dc036907638e3702729c2f60296094e"
+    },
+    {
+      "path": "public/assets/textures/leather-normal.jpg",
+      "bytes": 863280,
+      "sha256": "506a0b7650c2dea285e247f26ed2d0d6ec38fc10dd584359f0d203e9c082236d"
+    },
+    {
+      "path": "public/assets/textures/sky.hdr",
+      "bytes": 1173154,
+      "sha256": "206c67e3a1b992282821cf06662bdd69bbb4915c1c4444a66338a40d6a7d4e34"
+    },
+    {
+      "path": "public/assets/textures/turf.png",
+      "bytes": 3863618,
+      "sha256": "ec893afbb8e35bd8444f5423387d062d01d419d19443a3d951bf014c5dbb2d54",
+      "width": 1254,
+      "height": 1254,
+      "pngColorType": 2
+    },
+    {
+      "path": "public/assets/textures/zelkova.png",
+      "bytes": 2668386,
+      "sha256": "6b04ceff93ecba7ba9e907c4482e12ffdfa4ba3a55c410e6d29dc0587e8d62ff",
+      "width": 1254,
+      "height": 1254,
+      "pngColorType": 6
+    }
+  ]
+}

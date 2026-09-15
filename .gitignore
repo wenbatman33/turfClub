@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.DS_Store
+*.blend1
+assets/source/tree/
+artifacts/
+
+__pycache__/
+*.pyc
+.env
+.env.*
+!.env.example
+assets/source/audio/Fantozzi-footsteps/
+assets/source/audio/Fantozzi-footsteps.7z
